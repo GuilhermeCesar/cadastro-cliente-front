@@ -14,9 +14,11 @@ class CustumerService{
         }
     }
 
-    async saveCostumer(costumer){
+    async saveCostumer(data){
+        const headers = {'Content-Type': ''};
+
         try{
-            await this._httpService.post("/customers",costumer);
+            await this._httpService.post("/customers",data,headers);
             return "Cliente cadastrado com sucesso"
         }catch (e) {
             throw "Erro ao cadastrar cliente";

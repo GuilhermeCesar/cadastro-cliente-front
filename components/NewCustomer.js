@@ -11,8 +11,9 @@ import {
     ModalHeader,
     Row
 } from 'reactstrap';
-import CustomerService from '../services/CustumerService'
 import CurrencyInput from 'react-currency-input';
+import CustomerService from '../services/CustumerService';
+import FormDataHelper from '../utils/FormDataHelper';
 
 import '../css/newCustumer.css';
 
@@ -27,7 +28,8 @@ class NewCustomer extends React.Component {
             socialId:false,
             age:false,
             dependents:false,
-            salary:false
+            salary:false,
+            image:false
         };
 
         this._customer = {
@@ -38,8 +40,10 @@ class NewCustomer extends React.Component {
             age:null,
             dependents:null,
             state:null,
-            salary: null
+            salary: null,
+            image:null
         };
+
         this.state = {
             modal: false,
             validModal: this._validModal
@@ -49,6 +53,8 @@ class NewCustomer extends React.Component {
         this._saveCustomer = this._saveCustomer.bind(this);
         this._propostaService = new CustomerService();
         this._validForm = this._validForm.bind(this);
+        this._onChangeFile = this._onChangeFile.bind(this);
+        this._objectHasProperty = this._objectHasProperty.bind(this);
     }
 
     toggle() {
@@ -57,11 +63,15 @@ class NewCustomer extends React.Component {
         });
     }
 
+     _objectHasProperty(custumer, validModal,property){
+        return custumer.hasOwnProperty(property) && !custumer[property] && validModal.hasOwnProperty(property)
+    }
+
     _validForm(){
         let flagEmptyData = false;
 
         for(let propCustomer in this._customer){
-            if(this._customer.hasOwnProperty(propCustomer) && !this._customer[propCustomer]){
+            if(this._objectHasProperty(this._customer,this._validModal,propCustomer)){
                 this._validModal[propCustomer] = true;
                 flagEmptyData = true;
             }
@@ -74,7 +84,7 @@ class NewCustomer extends React.Component {
         try{
             const emptyData =  this._validForm();
             if(!emptyData){
-                this._propostaService.saveCostumer(this._customer);
+                this._propostaService.saveCostumer(FormDataHelper(this._customer));
                 this.toggle();
             }
         }catch (e) {
@@ -82,18 +92,22 @@ class NewCustomer extends React.Component {
         }
     }
 
-    _onBlur(event){
-        if(this._customer[event.target.name]){
-            this._validModal[event.target.name] = false;
+    _onBlur({target}){
+        if(this._customer[target.name]){
+            this._validModal[target.name] = false;
             this.setState({validModel:this._validModal});
         }
     }
 
-    _changeEventInput(event){
-        const isNumeric = event.target.type === "number";
-        this._customer[event.target.name] = isNumeric?
-            parseInt(event.target.value):event.target.value;
-        this._validModal[event.target.name] = false;
+    _changeEventInput({target}){
+        const isNumeric = target.type === "number";
+        this._customer[target.name] = isNumeric?
+            parseInt(target.value):target.value;
+        this._validModal[target.name] = false;
+    }
+
+    _onChangeFile({target}){
+        this._customer.image = target.files[0];
     }
 
     render() {
@@ -103,6 +117,14 @@ class NewCustomer extends React.Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Cadastro de Clientes</ModalHeader>
                     <ModalBody>
+                        <Row>
+                            <Col md={12}>
+                                <Input type="file" name="image" onBlur={event => this._onBlur(event)}
+                                       invalid={this.state.validModal.image}
+                                       onChange={event=>this._onChangeFile(event)}
+                                       placeholder="Imagem do usuário"/>
+                            </Col>
+                        </Row>
                         <Row>
                             <Col md={12}>
                                 <Input type="text" name="fullName" placeholder="Nome"

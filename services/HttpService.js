@@ -20,20 +20,15 @@ class HttpService {
         })
     }
 
-    async post(path="",body={},headers = {'Content-Type': 'application/json;charset=UTF-8'}){
-        return fetch(propostaConfig.baseURL+path,{
+    async post(path = "",body = {},headers = {'Content-Type': 'application/json'},mode = 'no-cors'){
+        return fetch(config.baseURL+path,{
             method: 'POST',
-            headers: headers,
-            body: JSON.stringify(body)
+            headers,
+            mode,
+            body:body
         })
-        .then(result => {
-            switch (result.status) {
-                case 500:
-                    throw new Error();
-            }
-            return result;
-        })
-        .catch(() => {
+        .catch((error) => {
+            console.error(error);
             throw new Error("Erro ao salvar Cliente");
         })
     }
