@@ -18,8 +18,10 @@ class CustumerService{
         const headers = {'Content-Type': ''};
 
         try{
-            await this._httpService.post("/customers",data,headers);
-            return "Cliente cadastrado com sucesso"
+            let customer = await this._httpService.post("/customers",data,headers)
+                                        .catch(error => console.error(error));
+
+            return await customer;
         }catch (e) {
             throw "Erro ao cadastrar cliente";
         }

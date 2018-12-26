@@ -8,7 +8,7 @@ const Item = (props) => {
 
     return (
         <div className="box">
-            <Link href={`/custumers?id=${customer.id}`}>
+            <Link href={`/customers?id=${customer.id}`}>
                 <div className="title">{customer.fullName}</div>
             </Link>
             <div className="details">

@@ -12,6 +12,7 @@ import {
     Row
 } from 'reactstrap';
 import CurrencyInput from 'react-currency-input';
+import Router from 'next/router'
 import CustomerService from '../services/CustumerService';
 import FormDataHelper from '../utils/FormDataHelper';
 
@@ -28,8 +29,9 @@ class NewCustomer extends React.Component {
             socialId:false,
             age:false,
             dependents:false,
-            salary:false,
-            image:false
+            image:false,
+            email:false,
+            telephone:false,
         };
 
         this._customer = {
@@ -40,8 +42,9 @@ class NewCustomer extends React.Component {
             age:null,
             dependents:null,
             state:null,
-            salary: null,
-            image:null
+            image:null,
+            email: null,
+            telephone:null
         };
 
         this.state = {
@@ -80,12 +83,13 @@ class NewCustomer extends React.Component {
         return flagEmptyData;
     }
 
-    _saveCustomer(){
+    async _saveCustomer(){
         try{
             const emptyData =  this._validForm();
             if(!emptyData){
-                this._propostaService.saveCostumer(FormDataHelper(this._customer));
+                await this._propostaService.saveCostumer(FormDataHelper(this._customer));
                 this.toggle();
+                Router.push(`/customers`)
             }
         }catch (e) {
             console.error(e);
@@ -97,6 +101,7 @@ class NewCustomer extends React.Component {
             this._validModal[target.name] = false;
             this.setState({validModel:this._validModal});
         }
+        return false;
     }
 
     _changeEventInput({target}){
@@ -104,6 +109,8 @@ class NewCustomer extends React.Component {
         this._customer[target.name] = isNumeric?
             parseInt(target.value):target.value;
         this._validModal[target.name] = false;
+
+        return false;
     }
 
     _onChangeFile({target}){
@@ -126,18 +133,40 @@ class NewCustomer extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col md={12}>
+                            <Col md={6}>
                                 <Input type="text" name="fullName" placeholder="Nome"
                                        onChange={event => this._changeEventInput(event)}
                                        invalid={this.state.validModal.fullName}
                                        onBlur={event => this._onBlur(event)}/>
                             </Col>
-                        </Row>
-                        <Row>
-                            <Col md={12}>
+                            <Col md={6}>
                                 <Input type="text" invalid={this.state.validModal.socialId}
                                        name="socialId" placeholder="CPF"
                                        onChange={event=>this._changeEventInput(event)}
+                                       onBlur={event => this._onBlur(event)}/>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md={12}>
+                                <Input type="email" invalid={this.state.validModal.email}
+                                       name="email" placeholder="email"
+                                       onChange={event=>this._changeEventInput(event)}
+                                       onBlur={event => this._onBlur(event)}/>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md={12}>
+                                <Input type="text" invalid={this.state.validModal.telephone}
+                                       name="telephone" placeholder="Telefone"
+                                       onChange={event=>this._changeEventInput(event)}
+                                       onBlur={event => this._onBlur(event)}/>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md={12}>
+                                <Input type="text" name="state" placeholder="UF"
+                                       onChange={event=>this._changeEventInput(event)}
+                                       invalid={this.state.validModal.state}
                                        onBlur={event => this._onBlur(event)}/>
                             </Col>
                         </Row>
@@ -156,44 +185,21 @@ class NewCustomer extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col md={12}>
+                            <Col md={6}>
                                 <Input type="select"  name="gener"
                                        placeholder="Sexo" onChange={event=>this._changeEventInput(event)}>
                                     <option value="M">Masculino</option>
                                     <option value="F">Feminino</option>
                                 </Input>
                             </Col>
-                        </Row>
-                        <Row>
-                            <Col md={12}>
+                            <Col md={6}>
                                 <Input type="select" name="civilStatus" placeholder="Estado Civil"
-                                        onChange={event=>this._changeEventInput(event)}>
+                                       onChange={event=>this._changeEventInput(event)}>
                                     <option value="SINGLE">Solteiro(a)</option>
                                     <option value="MARRIED">Casado(a)</option>
                                     <option value="DIVORCED">Divorciado(a)</option>
                                     <option value="WIDOWER">Viuvo(a)</option>
                                 </Input>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col md={12}>
-                                <InputGroup>
-                                    <InputGroupAddon addonType="prepend">Renda</InputGroupAddon>
-                                    <CurrencyInput name="salary" placeholder="Renda"
-                                                   className="form-control"
-                                                   decimalSeparator="."
-                                                   thousandSeparator=""
-                                                   onChangeEvent={event => this._changeEventInput(event)}/>
-                                </InputGroup>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col md={12}>
-                                <Input type="text" name="state" placeholder="UF"
-                                       onChange={event=>this._changeEventInput(event)}
-                                       invalid={this.state.validModal.state}
-                                       onBlur={event => this._onBlur(event)}/>
                             </Col>
                         </Row>
                     </ModalBody>

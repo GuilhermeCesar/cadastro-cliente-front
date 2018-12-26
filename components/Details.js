@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import {Card, CardBody,CardTitle} from 'reactstrap';
+import {Row, Col} from 'reactstrap';
+import config from '../cadastro-cliente.config'
 
 import '../css/detail.css';
 
@@ -11,13 +12,20 @@ const Details = (props) => {
         <div>
             { props.data
             ?
-            <div>
-                <Card>
-                    <CardBody>
-                        <CardTitle>{customer.fullName}</CardTitle>
-                        {/*<CardSubtitle>{HelperProposal(proposta.status)}</CardSubtitle>*/}
-                    </CardBody>
-                </Card>
+            <div className="box">
+                <style jsx>
+                    {`
+                        .image{
+                            background-image: url('${config.baseURL}/customers/image/${customer.image}');
+                        }
+                    ` }
+                </style>
+                <div className="image"></div>
+                <div className="data">
+                    <div>{customer.fullName}</div>
+                    <div>{customer.fullName}</div>
+                </div>
+
             </div>
                 :
             <h4>Clique em um item para visualizar</h4>

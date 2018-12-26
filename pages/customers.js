@@ -8,26 +8,26 @@ import List from '../components/List';
 import CustumerService from '../services/CustumerService';
 
 
-const CustumerPage = props => (
+const CustomerPage = props => (
     <Layout>
         <Col md={4}>
             <List data={props.customers}/>
         </Col>
         <Col md={8}>
-            <Details data={props.selectProposal}/>
+            <Details data={props.selectCustomer}/>
         </Col>
     </Layout>
 );
 
-CustumerPage.getInitialProps = async ({ req, query }) => {
+CustomerPage.getInitialProps = async ({ req, query }) => {
     const  custumerService =  new CustumerService();
-    const allCustomers = await custumerService.getAllCustumers();
+    const customers = await custumerService.getAllCustumers();
+    const selectCustomer = customers.filter(item => item.id == query.id)[0] || null;
 
-     const selectProposal = allCustomers.filter(item => item.id == query.id)[0] || null;
     return {
-        customers:allCustomers,
-        selectProposal
+        customers,
+        selectCustomer
     }
 };
 
-export default CustumerPage;
+export default CustomerPage;

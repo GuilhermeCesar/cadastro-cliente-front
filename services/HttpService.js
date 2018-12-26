@@ -28,8 +28,7 @@ class HttpService {
             body:body
         })
         .catch((error) => {
-            console.error(error);
-            throw new Error("Erro ao salvar Cliente");
+            throw new Error(error);
         })
     }
 }

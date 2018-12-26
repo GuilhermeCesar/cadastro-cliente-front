@@ -11,7 +11,7 @@ export default () => (
         <hr/>
         <Row>
           <p className="lead">
-              <Link href="/custumers">
+              <Link href="/customers">
                   <Button color="primary">Ver Clientes</Button>
               </Link>
           </p>
