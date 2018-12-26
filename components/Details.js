@@ -23,7 +23,9 @@ const Details = (props) => {
                 <div className="image"></div>
                 <div className="data">
                     <div>{customer.fullName}</div>
-                    <div>{customer.fullName}</div>
+                    <div>{customer.socialId}</div>
+                    <div>{customer.email}</div>
+                    <div>{customer.telephone}</div>
                 </div>
 
             </div>

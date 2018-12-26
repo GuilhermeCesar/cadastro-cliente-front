@@ -156,7 +156,7 @@ class NewCustomer extends React.Component {
                         </Row>
                         <Row>
                             <Col md={12}>
-                                <Input type="text" invalid={this.state.validModal.telephone}
+                                <Input type="tel" invalid={this.state.validModal.telephone}
                                        name="telephone" placeholder="Telefone"
                                        onChange={event=>this._changeEventInput(event)}
                                        onBlur={event => this._onBlur(event)}/>
