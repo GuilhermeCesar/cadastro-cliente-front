@@ -21,6 +21,9 @@ const CustomerPage = props => (
 
 CustomerPage.getInitialProps = async ({ req, query }) => {
     const  custumerService =  new CustumerService();
+    if(query.excluded){
+        await custumerService.deleteCustomer(query.excluded);
+    }
     const customers = await custumerService.getAllCustumers();
     const selectCustomer = customers.filter(item => item.id == query.id)[0] || null;
 

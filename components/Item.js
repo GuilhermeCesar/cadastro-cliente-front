@@ -8,11 +8,13 @@ const Item = (props) => {
 
     return (
         <div className="box">
-            <Link href={`/customers?id=${customer.id}`}>
-                <div className="title">{customer.fullName}</div>
-            </Link>
-            <div className="details">
-                <div>{customer.socialId}</div>
+            <div>
+                <Link href={`/customers?id=${customer.id}`}>
+                    <div className="title">{customer.fullName}</div>
+                </Link>
+                <div className="details">
+                    <div>{customer.socialId}</div>
+                </div>
             </div>
             <style jsx>{`
                 .box {

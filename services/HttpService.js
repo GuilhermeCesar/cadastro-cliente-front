@@ -25,7 +25,16 @@ class HttpService {
             method: 'POST',
             headers,
             mode,
-            body:body
+            body
+        })
+        .catch((error) => {
+            throw new Error(error);
+        })
+    }
+
+    async delete(path){
+        return fetch(config.baseURL+path,{
+            method: 'DELETE',
         })
         .catch((error) => {
             throw new Error(error);

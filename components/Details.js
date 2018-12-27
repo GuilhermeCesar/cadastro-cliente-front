@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
-import {Row, Col} from 'reactstrap';
-import config from '../cadastro-cliente.config'
+import {Button} from 'reactstrap';
+import config from '../cadastro-cliente.config';
+import Link from "next/link";
+
 
 import '../css/detail.css';
 
@@ -27,7 +29,11 @@ const Details = (props) => {
                     <div>{customer.email}</div>
                     <div>{customer.telephone}</div>
                 </div>
-
+                <div className="action">
+                    <Link href={{pathname:'customers', query:{excluded:customer.id}}}>
+                        <Button>Excluir</Button>
+                    </Link>
+                </div>
             </div>
                 :
             <h4>Clique em um item para visualizar</h4>

@@ -7,8 +7,8 @@ class CustumerService{
 
     async getAllCustumers(){
         try{
-            const proposta =  await this._httpService.get("/customers");
-            return await proposta.json();
+            const customer =  await this._httpService.get("/customers");
+            return await customer.json();
         }catch (e) {
             throw new Error("Erro ao consultar as propostas")
         }
@@ -18,13 +18,16 @@ class CustumerService{
         const headers = {'Content-Type': ''};
 
         try{
-            let customer = await this._httpService.post("/customers",data,headers)
+            await this._httpService.post("/customers",data,headers)
                                         .catch(error => console.error(error));
-
-            return await customer;
         }catch (e) {
             throw "Erro ao cadastrar cliente";
         }
+    }
+
+    async deleteCustomer(customerId){
+        await this._httpService.delete(`/customers/${customerId}`)
+            .catch(error => console.error(error))
     }
 }
 
