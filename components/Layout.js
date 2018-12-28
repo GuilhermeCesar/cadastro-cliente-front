@@ -10,7 +10,8 @@ const Layout = (props) => (
         {`
             .header{
                 padding: 30px;
-
+                background-image: url(https://essentia.com.br/wp-content/themes/altus/images/menu-fundo.png);
+                background-repeat: round;
             }
 
             .logo {
@@ -22,6 +23,7 @@ const Layout = (props) => (
           }
           .name-sistem{
                 margin: auto;
+                color:#86754d;
           }
 
           .create-user{
