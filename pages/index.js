@@ -7,9 +7,9 @@ export default () => (
     <div>
       <Jumbotron>
         <h1 className="display-3">Essentia</h1>
-            <p className="lead">Aqui  você poderá acompanhar os seus clientes</p>
+            <p className="lead center">Aqui  você acompanha os seus clientes</p>
         <hr/>
-        <Row>
+        <Row className="center">
           <p className="lead">
               <Link href="/customers">
                   <Button color="primary">Ver Clientes</Button>

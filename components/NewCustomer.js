@@ -23,18 +23,7 @@ class NewCustomer extends React.Component {
             telephone:false,
         };
 
-        this._customer = {
-            gener:'M',
-            civilStatus:'SINGLE',
-            fullName:'',
-            socialId:'',
-            age:'',
-            dependents:0,
-            state:'',
-            image:null,
-            email: '',
-            telephone:''
-        };
+        this._customer = NewCustomer.customerEmpty();
 
         this.state = {
             modal: false,
@@ -88,12 +77,29 @@ class NewCustomer extends React.Component {
         return flagEmptyData;
     }
 
+    static customerEmpty(){
+        return {
+            gener:'M',
+            civilStatus:'SINGLE',
+            fullName:'',
+            socialId:'',
+            age:'',
+            dependents:0,
+            state:'',
+            image:null,
+            email: '',
+            telephone:''
+        }
+    }
+
     async _saveCustomer(){
         try{
             const emptyData =  this._validForm();
             if(!emptyData){
                 await this._propostaService.saveCostumer(FormDataHelper(this._customer));
                 this.toggle();
+
+                this._customer = NewCustomer.customerEmpty();
                 Router.push(`/customers`)
             }
         }catch (e) {
