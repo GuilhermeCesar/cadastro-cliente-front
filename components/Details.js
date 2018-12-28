@@ -37,7 +37,9 @@ const Details = (props) => {
                 </div>
             </div>
                 :
-            <h4>Clique em um item para visualizar</h4>
+            <div className="box">
+                <h4>Clique em um item para visualizar</h4>
+            </div>
             }
         </div>
     )

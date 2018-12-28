@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Button, Jumbotron, Row} from 'reactstrap'
-
+import '../css/body.css';
 
 export default () => (
     <div>

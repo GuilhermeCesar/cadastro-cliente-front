@@ -5,32 +5,36 @@ import NewCustomer from './NewCustomer';
 
 
 const Layout = (props) => (
-    <Container>
+    <Container className="container">
         <style>
         {`
-            .header{
-                padding: 30px;
-                background-image: url(https://essentia.com.br/wp-content/themes/altus/images/menu-fundo.png);
-                background-repeat: round;
-            }
+        .header{
+            padding: 30px;
+            background-image: url(https://essentia.com.br/wp-content/themes/altus/images/menu-fundo.png);
+            background-repeat: round;
+        }
 
-            .logo {
-                background-repeat: no-repeat;
-                height: 100px;
-                background-position: center;
-                background-size: contain;
-                background-image: url('/static/logo.png');
+        .logo {
+            background-repeat: no-repeat;
+            height: 100px;
+            background-position: center;
+            background-size: contain;
+            background-image: url('/static/logo.png');
           }
-          .name-sistem{
-                margin: auto;
-                color:#86754d;
-          }
-
-          .create-user{
+        .name-sistem{
             margin: auto;
+            color:#86754d;
           }
 
+        .create-user{
+            margin: auto;
+        }
 
+        .container{
+            margin: 0;
+            width: 100%;
+            min-width: 100%;
+        }
         `}
         </style>
         <Row className="header">

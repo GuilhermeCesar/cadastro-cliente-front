@@ -3,12 +3,18 @@
     padding:10px;
     display:flex;
     justify-content: space-around;
+    background-color: #f9f0f0;
 }
 
 .action{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+.data{
+    font-weight: 900;
+    font-size: 18px;
+
 }
 
 .image{
