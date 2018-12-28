@@ -16,10 +16,10 @@ const Layout = (props) => (
         `}
         </style>
         <Row className="header">
-            <Col md={6}>
-                <h4>Proposta de Crédito</h4>
+            <Col md={10}>
+                <h4>Cadastro de usuários</h4>
             </Col>
-            <Col md={6}>
+            <Col md={2}>
                 <NewCustomer  buttonLabel="Criar Usuário"/>
             </Col>
         </Row>

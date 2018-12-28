@@ -2,6 +2,13 @@
     border:3px solid #ddd;
     padding:10px;
     display:flex;
+    justify-content: space-around;
+}
+
+.action{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .image{

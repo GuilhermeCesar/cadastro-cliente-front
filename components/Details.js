@@ -1,10 +1,9 @@
+import '../css/detail.css';
 import PropTypes from 'prop-types';
 import {Button} from 'reactstrap';
 import config from '../cadastro-cliente.config';
 import Link from "next/link";
 
-
-import '../css/detail.css';
 import NewCustomer from "./NewCustomer";
 
 
