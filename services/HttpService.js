@@ -20,11 +20,22 @@ class HttpService {
         })
     }
 
-    async post(path = "",body = {},headers = {'Content-Type': 'application/json'},mode = 'no-cors'){
+    async post(path = "",body = {},headers = {'Content-Type': ''},mode = 'no-cors'){
         return fetch(config.baseURL+path,{
             method: 'POST',
             headers,
-            mode,
+            body,
+            mode
+        })
+        .catch((error) => {
+            throw new Error(error);
+        })
+    }
+
+    async put(path = "",body = {},headers = {'Content-Type':''}){
+        return fetch(config.baseURL+path,{
+            method: 'PUT',
+            // headers,
             body
         })
         .catch((error) => {

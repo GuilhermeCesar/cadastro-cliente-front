@@ -52,15 +52,14 @@ class NewCustomer extends React.Component {
                 dependents:user.dependents,
                 state:user.dependents,
                 email: user.email,
-                telephone:user.telephone
+                telephone:user.telephone,
+                id:user.id
             };
-
         }
 
-
+        this._propostaService = new CustomerService();
         this.toggle = this.toggle.bind(this);
         this._saveCustomer = this._saveCustomer.bind(this);
-        this._propostaService = new CustomerService();
         this._validForm = this._validForm.bind(this);
         this._onChangeFile = this._onChangeFile.bind(this);
         this._objectHasProperty = this._objectHasProperty.bind(this);
@@ -115,7 +114,6 @@ class NewCustomer extends React.Component {
         this._customer[target.name] = isNumeric?
             parseInt(target.value):target.value;
         this._validModal[target.name] = false;
-
         return false;
     }
 

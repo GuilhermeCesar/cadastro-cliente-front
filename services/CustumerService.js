@@ -15,14 +15,21 @@ class CustumerService{
     }
 
     async saveCostumer(data){
-        const headers = {'Content-Type': ''};
-
         try{
-            await this._httpService.post("/customers",data,headers)
-                                        .catch(error => console.error(error));
+            if(data.get("id")){
+                await this._httpService.put("/customers",data)
+                    .catch(error => console.error(error));
+                return;
+            }
+            await this._httpService.post("/customers",data)
+                .catch(error => console.error(error));
         }catch (e) {
             throw "Erro ao cadastrar cliente";
         }
+    }
+
+    async updateCustumer(data){
+
     }
 
     async deleteCustomer(customerId){
