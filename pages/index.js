@@ -7,7 +7,7 @@ export default () => (
     <div>
       <Jumbotron>
         <h1 className="display-3">Essentia</h1>
-        <p className="lead">Aqui  você poderá acompanhar os seus clientes</p>
+            <p className="lead">Aqui  você poderá acompanhar os seus clientes</p>
         <hr/>
         <Row>
           <p className="lead">
