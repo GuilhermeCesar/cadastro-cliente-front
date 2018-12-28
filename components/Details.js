@@ -5,6 +5,7 @@ import Link from "next/link";
 
 
 import '../css/detail.css';
+import NewCustomer from "./NewCustomer";
 
 
 const Details = (props) => {
@@ -33,6 +34,7 @@ const Details = (props) => {
                     <Link href={{pathname:'customers', query:{excluded:customer.id}}}>
                         <Button>Excluir</Button>
                     </Link>
+                    <NewCustomer user={customer} buttonLabel="Editar usuário"/>
                 </div>
             </div>
                 :

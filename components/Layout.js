@@ -20,7 +20,7 @@ const Layout = (props) => (
                 <h4>Proposta de Crédito</h4>
             </Col>
             <Col md={6}>
-                <NewCustomer buttonLabel="Criar Usuário"/>
+                <NewCustomer  buttonLabel="Criar Usuário"/>
             </Col>
         </Row>
         <Row>
